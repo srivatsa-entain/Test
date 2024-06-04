@@ -1,0 +1,9 @@
+@Api_HostAddress = http://localhost:5272
+
+GET {{Api_HostAddress}}/list-races/
+Accept: application/json
+
+GET {{Api_HostAddress}}/list-raceid/
+Accept: application/json
+
+###

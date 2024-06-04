@@ -1,0 +1,64 @@
+syntax = "proto3";
+package racing;
+
+option go_package = "/racing";
+option csharp_namespace = "Racing";
+
+import "google/protobuf/timestamp.proto";
+
+service Racing {
+  // ListRaces will return a collection of all races.
+  rpc ListRaces(ListRacesRequest) returns (ListRacesResponse) {}
+  
+  //Just returs one Race
+  rpc GetRaceById(GetRacebyIdRequest) returns(GetRacebyIdResponse){}
+}
+
+/* Requests/Responses */
+
+message ListRacesRequest {
+  ListRacesRequestFilter filter = 1;
+}
+
+// Response to ListRaces call.
+message ListRacesResponse {
+  repeated Race races = 1;
+}
+// The request message containing Race ID.
+message GetRacebyIdRequest {
+    GetRaceByRequestFilter filter = 1;
+}
+
+// The response message containing the Race for the specified ID.
+message GetRacebyIdResponse {
+  Race race = 1;
+}
+
+// Filter for listing races.
+message ListRacesRequestFilter {
+  bool visible  = 1;
+}
+
+message GetRaceByRequestFilter {
+  int64 id  = 1;
+}
+
+/* Resources */
+
+// A race resource.
+message Race {
+  // ID represents a unique identifier for the race.
+  int64 id = 1;
+  // MeetingID represents a unique identifier for the races meeting.
+  int64 meeting_id = 2;
+  // Name is the official name given to the race.
+  string name = 3;
+  // Number represents the number of the race.
+  int64 number = 4;
+  // Visible represents whether or not the race is visible.
+  bool visible = 5;
+  // AdvertisedStartTime is the time the race is advertised to run.
+  google.protobuf.Timestamp advertised_start_time = 6;
+  //Status will be computed based on the advertised_start_time 
+  string status = 7;
+}
