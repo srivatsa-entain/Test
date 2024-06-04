@@ -84,6 +84,7 @@ namespace Racing.Services
                 foreach (var race in races)
                 {
                     // TODO: add some error handling to ensure the date is valid
+                    DateTime.TryParse(race?.AdvertisedStartTime, out var dateTime);
                     rsp.Races.Add(
                         new Race
                         {
