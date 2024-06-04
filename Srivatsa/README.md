@@ -67,8 +67,9 @@ dotnet run --project Api
   
 3. Make Api request for races 
 ```
-curl -X "POST" "http://localhost:5272/list-races" \
-     -H 'Content-Type: application/json'
+curl.exe -X POST -H "Content-Type: application/json" http://localhost:5272/list-races
+curl.exe -X "POST" "http://localhost:5272/list-races" -d "{ "filter": {"visible": true} }"
+curl.exe -X "POST" "http://localhost:5272/list-raceid" -d "{ "filter": {"id": 17} }"
 ```  
 
 ![](api-racing-arch.png)
