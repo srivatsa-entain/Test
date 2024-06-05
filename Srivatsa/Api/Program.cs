@@ -10,6 +10,7 @@ public class Filter
 {
     public bool visible { get; set; }
     public long id { get; set; }
+    public long pageSize { get; set; }
 }
 
 public class Root
@@ -56,7 +57,11 @@ public class Program
                 var c = JsonConvert.DeserializeObject<Root>(requestBody);
                 if (c != null)
                 {
-                    request.Filter = new Racing.ListRacesRequestFilter() { Visible = c?.filter?.visible ?? true };
+                    request.Filter = new Racing.ListRacesRequestFilter() 
+                    { 
+                        Visible = c?.filter?.visible ?? true,
+                        PageSize = c?.filter?.pageSize > 0 ? c.filter.pageSize : 20
+                    };
                 }
                 var allRaces = client.ListRaces(request);
                 return allRaces;
