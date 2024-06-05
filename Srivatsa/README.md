@@ -70,6 +70,7 @@ dotnet run --project Api
 curl.exe -X POST -H "Content-Type: application/json" http://localhost:5272/list-races
 curl.exe -X "POST" "http://localhost:5272/list-races" -d "{ "filter": {"visible": true} }"
 curl.exe -X "POST" "http://localhost:5272/list-raceid" -d "{ "filter": {"id": 17} }"
+curl.exe -X "POST" "http://localhost:5272/list-races" -d "{ "filter": {"visible": true, "pageSize": 10} }"
 ```  
 
 ![](api-racing-arch.png)
