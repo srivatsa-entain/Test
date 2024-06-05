@@ -37,6 +37,7 @@ message GetRacebyIdResponse {
 // Filter for listing races.
 message ListRacesRequestFilter {
   bool visible  = 1;
+  int64 pageSize = 2;
 }
 
 message GetRaceByRequestFilter {
