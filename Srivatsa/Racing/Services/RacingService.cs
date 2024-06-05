@@ -16,6 +16,7 @@ namespace Racing.Services
     public class RacingService : Racing.RacingBase
     {
         private readonly ILogger<RacingService> _logger;
+   
         public RacingService(ILogger<RacingService> logger)
         {
             _logger = logger;
@@ -71,11 +72,11 @@ namespace Racing.Services
 
                 if (request.Filter.Visible)
                 {
-                    races = (List<Models.Race>)races.Where(r => r.Visible == 1).Take(20).OrderBy(r => r.AdvertisedStartTime).ToList();
+                    races = (List<Models.Race>)races.Where(r => r.Visible == 1).Take((int)request.Filter.PageSize).OrderBy(r => r.AdvertisedStartTime).ToList();
                 }
                 else
                 {
-                    races = (List<Models.Race>)races.Take(20).OrderBy(r => r.AdvertisedStartTime).ToList();
+                    races = (List<Models.Race>)races.Take((int)request.Filter.PageSize).OrderBy(r => r.AdvertisedStartTime).ToList();
                 }
 
                 var rsp = new ListRacesResponse();
